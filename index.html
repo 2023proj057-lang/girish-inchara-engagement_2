@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Girish & Inchara – Engagement Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Cinzel:wght@500;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: linear-gradient(135deg, #eaeaea 0%, #dcdcdc 50%, #cfcfcf 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── UPDATED CARD LAYER STRATIFICATION ── */
+  .card {
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.60),
+        rgba(0,0,0,0.60)
+    ),
+    url('beside.png');
+    background-size: cover;
+    background-position: center;
+    border:2px solid #b8860b77;
+    max-width:480px;
+    width:100%;
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    position: relative;
+  }
+
+  .corner { position: absolute; width: 80px; height: 80px; opacity: 0.85; pointer-events: none; z-index: 5; }
+  .corner-tl { top: 8px; left: 8px; }
+  .corner-tr { top: 8px; right: 8px; transform: scaleX(-1); }
+  .corner-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+  .corner-br { bottom: 8px; right: 8px; transform: scale(-1); }
+
+  .inner-border {
+    margin: 18px;
+    border: 1px solid #aa801066;
+    padding: 1.8rem 1.8rem 2.2rem;
+    position: relative;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .bismillah {
+    text-align: center;
+    font-style: italic;
+    color: #8a6405;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+  }
+
+  .divider { display: flex; align-items: center; gap: 10px; margin: 0.8rem 0; }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #aa801066, transparent); }
+  .divider-diamond { width: 6px; height: 6px; background: #966f0a; transform: rotate(45deg); }
+
+  .invite-text { text-align: center; color: #5a5a5a; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
+
+  .names-block { text-align: center; margin: 1.2rem 0; }
+  .name-main { font-family: 'Great Vibes', cursive; font-size: 58px; color: #222222; line-height: 1.1; text-shadow: 1px 1px 1px rgba(255,255,255,0.8); display: block; }
+  .ampersand { font-family: 'Great Vibes', cursive; font-size: 42px; color: #aa5010; display: block; margin: -4px 0; line-height: 1; }
+  .surname { font-family: 'Cinzel', serif; font-size: 11px; color: #444444; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px; display: block; font-weight: 700; }
+
+  .ring-icon { text-align: center; margin: 0.6rem 0; font-size: 22px; letter-spacing: 8px; filter: drop-shadow(0px 1px 1px white); }
+
+  .scratch-area { text-align: center; margin: 1.2rem 0; position: relative; }
+  .scratch-canvas-wrap { position: relative; display: inline-block; width: 240px; height: 65px; margin: 0 auto; vertical-align: top; }
+  .scratch-revealed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fbfbfb, #eaeaea);
+    border: 1px solid #aa801066;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    color: #8a6405;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    z-index: 1;
+  }
+  .scratch-hint { font-size: 10px; color: #555555; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; font-family: 'Cinzel', serif; font-weight: 700; }
+  canvas#scratchCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 4px; touch-action: none; cursor: pointer; z-index: 10; }
+
+  #fireworks-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none; }
+
+  .countdown-row { display: flex; gap: 8px; justify-content: center; margin: 0.8rem 0; }
+  .cd-block { text-align: center; flex: 1; max-width: 68px; background: rgba(255, 255, 255, 0.85); border: 1px solid #aa801044; padding: 8px 4px; border-radius: 4px; }
+  .cd-num { font-family: 'Cinzel', serif; font-size: 20px; color: #222222; display: block; line-height: 1; font-weight: 700; }
+  .cd-label { font-size: 9px; color: #555555; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; display: block; font-weight: 600; }
+
+  .details-block { margin: 1.2rem 0; }
+  .detail-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0.9rem; padding: 10px 12px; border: 1px solid #aa801033; border-radius: 4px; background: rgba(255, 255, 255, 0.9); }
+  .detail-icon { color: #aa8010; font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .detail-label { font-size: 10px; color: #555555; letter-spacing: 2px; text-transform: uppercase; display: block; font-weight: 700; }
+  .detail-value { font-size: 14px; color: #111111; display: block; margin-top: 2px; font-style: italic; font-weight: 600; }
+  .detail-sub { font-size: 12px; color: #444444; display: block; margin-top: 2px; }
+
+  .family-section { margin: 1.2rem 0; }
+  .family-heading { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #444444; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
+  .family-names { text-align: center; font-size: 15px; color: #222222; line-height: 1.8; font-style: italic; font-weight: 600; }
+  .family-sub { font-size: 11px; color: #666666; letter-spacing: 2px; font-style: normal; font-family: 'Cinzel', serif; font-weight: 700; }
+  .family-divider { text-align: center; color: #aa801066; font-size: 12px; margin: 4px 0; letter-spacing: 4px; }
+
+  .rsvp-block { text-align: center; margin-top: 1.4rem; padding: 12px; border: 1px solid #aa801044; background: rgba(255, 255, 255, 0.85); border-radius: 4px; }
+  .rsvp-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: #444444; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+  .rsvp-btn { display: inline-block; padding: 8px 22px; border: 1px solid #966f0a; color: #966f0a; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; background: rgba(255,255,255,0.9); transition: all 0.3s; margin: 4px; text-decoration: none; font-weight: 700; border-radius: 2px; }
+  .rsvp-btn:hover, .rsvp-btn:active { background: #966f0a; color: #ffffff; }
+
+  .footer-text { text-align: center; margin-top: 1.2rem; font-size: 11px; color: #555555; font-style: italic; letter-spacing: 1px; font-weight: 600; }
+
+  .rose-petals { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; z-index: 3; }
+  .petal { position: absolute; opacity: 0.35; animation: fall linear infinite; }
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.35; }
+    90% { opacity: 0.35; }
+    100% { transform: translateY(1100px) rotate(360deg); opacity: 0; }
+  }
+
+  @keyframes revealPulse {
+    0% { text-shadow: 0 0 8px rgba(138,100,5,0.2); }
+    50% { text-shadow: 0 0 25px rgba(150,111,10,0.6); }
+    100% { text-shadow: 0 0 8px rgba(138,100,5,0.2); }
+  }
+  .revealed-glow { animation: revealPulse 1.5s ease-in-out 3; }
+
+  @media (max-width: 400px) {
+    .name-main { font-size: 48px; }
+    .inner-border { padding: 1.4rem 1.1rem 1.8rem; margin: 12px; }
+    .scratch-canvas-wrap { width: 210px; height: 60px; }
+    .scratch-revealed { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" src="music.mp3" loop></audio>
+<canvas id="fireworks-canvas"></canvas>
+
+<div class="card">
+  <div class="rose-petals" id="petals"></div>
+
+  <svg class="corner corner-tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 40 Q4 4 40 4 Z" stroke="#966f0a" stroke-width="0.75" fill="none" opacity="0.7"/>
+    <path d="M4 4 L4 20" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <path d="M4 4 L20 4" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <circle cx="4" cy="4" r="2" fill="#966f0a" opacity="0.8"/>
+    <path d="M8 8 Q8 20 20 20 Q8 20 8 8" stroke="#966f0a" stroke-width="0.5" fill="none" opacity="0.6"/>
+  </svg>
+  <svg class="corner corner-tr" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 40 Q4 4 40 4 Z" stroke="#966f0a" stroke-width="0.75" fill="none" opacity="0.7"/>
+    <path d="M4 4 L4 20" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <path d="M4 4 L20 4" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <circle cx="4" cy="4" r="2" fill="#966f0a" opacity="0.8"/>
+    <path d="M8 8 Q8 20 20 20 Q8 20 8 8" stroke="#966f0a" stroke-width="0.5" fill="none" opacity="0.6"/>
+  </svg>
+  <svg class="corner corner-bl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 40 Q4 4 40 4 Z" stroke="#966f0a" stroke-width="0.75" fill="none" opacity="0.7"/>
+    <path d="M4 4 L4 20" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <path d="M4 4 L20 4" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <circle cx="4" cy="4" r="2" fill="#966f0a" opacity="0.8"/>
+    <path d="M8 8 Q8 20 20 20 Q8 20 8 8" stroke="#966f0a" stroke-width="0.5" fill="none" opacity="0.6"/>
+  </svg>
+  <svg class="corner corner-br" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4 L4 40 Q4 4 40 4 Z" stroke="#966f0a" stroke-width="0.75" fill="none" opacity="0.7"/>
+    <path d="M4 4 L4 20" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <path d="M4 4 L20 4" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
+    <circle cx="4" cy="4" r="2" fill="#966f0a" opacity="0.8"/>
+    <path d="M8 8 Q8 20 20 20 Q8 20 8 8" stroke="#966f0a" stroke-width="0.5" fill="none" opacity="0.6"/>
+  </svg>
+
+  <div class="inner-border">
+    <div class="bismillah">✦ With the blessings of the Almighty ✦</div>
+    <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    <div class="invite-text">Together with their families</div>
+
+    <div class="names-block">
+      <span class="name-main">Girish</span>
+      <span class="ampersand">&amp;</span>
+      <span class="name-main">Inchara</span>
+      <span class="surname" style="margin-top:8px;">cordially invite you to their engagement</span>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    <div class="ring-icon">💍 🌸 💍</div>
+
+    <div class="scratch-area">
+      <div class="scratch-canvas-wrap" id="scratchWrap">
+        <div class="scratch-revealed" id="dateReveal">21st September 2026</div>
+        <canvas id="scratchCanvas"></canvas>
+      </div>
+      <div class="scratch-hint" id="scratchHint">✦ Scratch to reveal the date ✦</div>
+    </div>
+
+    <div class="countdown-row">
+      <div class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Days</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Hours</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Mins</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Secs</span></div>
+    </div>
+
+    <div class="details-block">
+      <div class="detail-row">
+        <span class="detail-icon">📅</span>
+        <div>
+          <span class="detail-label">Engagement Ceremony</span>
+          <span class="detail-value">Sunday, 21st September 2026</span>
+          <span class="detail-sub">Muhurtha: 11:00 AM onwards</span>
+        </div>
+      </div>
+      <div class="detail-row">
+        <span class="detail-icon">🏛️</span>
+        <div>
+          <span class="detail-label">Venue</span>
+          <span class="detail-value">Sri Shivakumara Swamiji Dharmika Kendra</span>
+          <span class="detail-sub">Gokula Extension, Tumkur</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+    <div class="family-section">
+      <div class="family-heading">With the blessings of</div>
+      <div class="family-names">
+        <span class="family-sub">GROOM'S PARENTS</span><br>
+        Sri Siddanagouda &amp; Smt. Chandrakala
+        <div class="family-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+        <span class="family-sub">BRIDE'S PARENTS</span><br>
+        Sri Parameshwaraiah &amp; Smt. Sandya
+      </div>
+    </div>
+
+    <div class="rsvp-block">
+      <div class="rsvp-label">Kindly confirm your attendance</div>
+      <a class="rsvp-btn" href="tel:+918867069672">✦ RSVP ✦</a>
+      <a class="rsvp-btn" href="https://www.justdial.com/Tumkur/Sri-Shivakumara-Swamiji-Dharmika-Kendra-Gokula-Extension/9999PX816
