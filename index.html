@@ -19,12 +19,12 @@
     overflow-x: hidden;
   }
 
-  /* ── UPDATED CARD LAYER STRATIFICATION ── */
+  /* ── CARD LAYER WITH ADJUSTED OVERLAY FOR BETTER VISIBILITY ── */
   .card {
     background:
     linear-gradient(
-        rgba(0,0,0,0.60),
-        rgba(0,0,0,0.60)
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
     ),
     url('beside.png');
     background-size: cover;
@@ -38,44 +38,46 @@
     position: relative;
   }
 
-  .corner { position: absolute; width: 80px; height: 80px; opacity: 0.85; pointer-events: none; z-index: 5; }
+  .corner { position: absolute; width: 80px; height: 80px; opacity: 0.9; pointer-events: none; z-index: 5; }
   .corner-tl { top: 8px; left: 8px; }
   .corner-tr { top: 8px; right: 8px; transform: scaleX(-1); }
   .corner-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
   .corner-br { bottom: 8px; right: 8px; transform: scale(-1); }
 
+  /* ── TRANSLUCENT FROSTED GLASS INNER PANEL TO SHOW BACKGROUND PHOTO ── */
   .inner-border {
     margin: 18px;
-    border: 1px solid #aa801066;
+    border: 1px solid #aa801088;
     padding: 1.8rem 1.8rem 2.2rem;
     position: relative;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border-radius: 4px;
     z-index: 2;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
   }
 
   .bismillah {
     text-align: center;
     font-style: italic;
-    color: #8a6405;
+    color: #705104;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 1.2rem;
   }
 
   .divider { display: flex; align-items: center; gap: 10px; margin: 0.8rem 0; }
-  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #aa801066, transparent); }
-  .divider-diamond { width: 6px; height: 6px; background: #966f0a; transform: rotate(45deg); }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #aa8010aa, transparent); }
+  .divider-diamond { width: 6px; height: 6px; background: #8a6405; transform: rotate(45deg); }
 
-  .invite-text { text-align: center; color: #5a5a5a; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
+  .invite-text { text-align: center; color: #444444; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700; }
 
   .names-block { text-align: center; margin: 1.2rem 0; }
-  .name-main { font-family: 'Great Vibes', cursive; font-size: 58px; color: #222222; line-height: 1.1; text-shadow: 1px 1px 1px rgba(255,255,255,0.8); display: block; }
+  .name-main { font-family: 'Great Vibes', cursive; font-size: 58px; color: #111111; line-height: 1.1; text-shadow: 1px 1px 2px rgba(255,255,255,0.9); display: block; }
   .ampersand { font-family: 'Great Vibes', cursive; font-size: 42px; color: #aa5010; display: block; margin: -4px 0; line-height: 1; }
-  .surname { font-family: 'Cinzel', serif; font-size: 11px; color: #444444; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px; display: block; font-weight: 700; }
+  .surname { font-family: 'Cinzel', serif; font-size: 11px; color: #222222; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px; display: block; font-weight: 700; }
 
   .ring-icon { text-align: center; margin: 0.6rem 0; font-size: 22px; letter-spacing: 8px; filter: drop-shadow(0px 1px 1px white); }
 
@@ -87,8 +89,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #fbfbfb, #eaeaea);
-    border: 1px solid #aa801066;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border: 1px solid #aa801088;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,38 +100,38 @@
     font-weight: bold;
     letter-spacing: 2px;
     border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     z-index: 1;
   }
-  .scratch-hint { font-size: 10px; color: #555555; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; font-family: 'Cinzel', serif; font-weight: 700; }
+  .scratch-hint { font-size: 10px; color: #333333; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; font-family: 'Cinzel', serif; font-weight: 700; }
   canvas#scratchCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 4px; touch-action: none; cursor: pointer; z-index: 10; }
 
   #fireworks-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none; }
 
   .countdown-row { display: flex; gap: 8px; justify-content: center; margin: 0.8rem 0; }
-  .cd-block { text-align: center; flex: 1; max-width: 68px; background: rgba(255, 255, 255, 0.85); border: 1px solid #aa801044; padding: 8px 4px; border-radius: 4px; }
-  .cd-num { font-family: 'Cinzel', serif; font-size: 20px; color: #222222; display: block; line-height: 1; font-weight: 700; }
-  .cd-label { font-size: 9px; color: #555555; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; display: block; font-weight: 600; }
+  .cd-block { text-align: center; flex: 1; max-width: 68px; background: rgba(255, 255, 255, 0.85); border: 1px solid #aa801055; padding: 8px 4px; border-radius: 4px; }
+  .cd-num { font-family: 'Cinzel', serif; font-size: 20px; color: #111111; display: block; line-height: 1; font-weight: 700; }
+  .cd-label { font-size: 9px; color: #444444; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; display: block; font-weight: 700; }
 
   .details-block { margin: 1.2rem 0; }
-  .detail-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0.9rem; padding: 10px 12px; border: 1px solid #aa801033; border-radius: 4px; background: rgba(255, 255, 255, 0.9); }
+  .detail-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0.9rem; padding: 10px 12px; border: 1px solid #aa801044; border-radius: 4px; background: rgba(255, 255, 255, 0.9); }
   .detail-icon { color: #aa8010; font-size: 16px; margin-top: 2px; flex-shrink: 0; }
-  .detail-label { font-size: 10px; color: #555555; letter-spacing: 2px; text-transform: uppercase; display: block; font-weight: 700; }
-  .detail-value { font-size: 14px; color: #111111; display: block; margin-top: 2px; font-style: italic; font-weight: 600; }
-  .detail-sub { font-size: 12px; color: #444444; display: block; margin-top: 2px; }
+  .detail-label { font-size: 10px; color: #444444; letter-spacing: 2px; text-transform: uppercase; display: block; font-weight: 700; }
+  .detail-value { font-size: 14px; color: #000000; display: block; margin-top: 2px; font-style: italic; font-weight: 700; }
+  .detail-sub { font-size: 12px; color: #222222; display: block; margin-top: 2px; font-weight: 600; }
 
   .family-section { margin: 1.2rem 0; }
-  .family-heading { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #444444; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
-  .family-names { text-align: center; font-size: 15px; color: #222222; line-height: 1.8; font-style: italic; font-weight: 600; }
-  .family-sub { font-size: 11px; color: #666666; letter-spacing: 2px; font-style: normal; font-family: 'Cinzel', serif; font-weight: 700; }
-  .family-divider { text-align: center; color: #aa801066; font-size: 12px; margin: 4px 0; letter-spacing: 4px; }
+  .family-heading { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #333333; text-align: center; margin-bottom: 0.8rem; font-weight: 700; }
+  .family-names { text-align: center; font-size: 15px; color: #111111; line-height: 1.8; font-style: italic; font-weight: 700; }
+  .family-sub { font-size: 11px; color: #555555; letter-spacing: 2px; font-style: normal; font-family: 'Cinzel', serif; font-weight: 700; }
+  .family-divider { text-align: center; color: #aa801088; font-size: 12px; margin: 4px 0; letter-spacing: 4px; }
 
-  .rsvp-block { text-align: center; margin-top: 1.4rem; padding: 12px; border: 1px solid #aa801044; background: rgba(255, 255, 255, 0.85); border-radius: 4px; }
-  .rsvp-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: #444444; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+  .rsvp-block { text-align: center; margin-top: 1.4rem; padding: 12px; border: 1px solid #aa801055; background: rgba(255, 255, 255, 0.85); border-radius: 4px; }
+  .rsvp-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: #333333; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
   .rsvp-btn { display: inline-block; padding: 8px 22px; border: 1px solid #966f0a; color: #966f0a; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; background: rgba(255,255,255,0.9); transition: all 0.3s; margin: 4px; text-decoration: none; font-weight: 700; border-radius: 2px; }
   .rsvp-btn:hover, .rsvp-btn:active { background: #966f0a; color: #ffffff; }
 
-  .footer-text { text-align: center; margin-top: 1.2rem; font-size: 11px; color: #555555; font-style: italic; letter-spacing: 1px; font-weight: 600; }
+  .footer-text { text-align: center; margin-top: 1.2rem; font-size: 11px; color: #333333; font-style: italic; letter-spacing: 1px; font-weight: 700; }
 
   .rose-petals { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; z-index: 3; }
   .petal { position: absolute; opacity: 0.35; animation: fall linear infinite; }
@@ -163,6 +165,7 @@
 <div class="card">
   <div class="rose-petals" id="petals"></div>
 
+  <!-- Decorative Custom Vectors Framed Over Transparent Overlay -->
   <svg class="corner corner-tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M4 4 L4 40 Q4 4 40 4 Z" stroke="#966f0a" stroke-width="0.75" fill="none" opacity="0.7"/>
     <path d="M4 4 L4 20" stroke="#966f0a" stroke-width="0.75" opacity="0.9"/>
@@ -207,6 +210,7 @@
     <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
     <div class="ring-icon">💍 🌸 💍</div>
 
+    <!-- Scratch Area Box -->
     <div class="scratch-area">
       <div class="scratch-canvas-wrap" id="scratchWrap">
         <div class="scratch-revealed" id="dateReveal">21st September 2026</div>
@@ -215,6 +219,7 @@
       <div class="scratch-hint" id="scratchHint">✦ Scratch to reveal the date ✦</div>
     </div>
 
+    <!-- Live Active Countdown Timer -->
     <div class="countdown-row">
       <div class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Days</span></div>
       <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Hours</span></div>
@@ -222,6 +227,7 @@
       <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Secs</span></div>
     </div>
 
+    <!-- Location and Date Details -->
     <div class="details-block">
       <div class="detail-row">
         <span class="detail-icon">📅</span>
@@ -257,4 +263,200 @@
     <div class="rsvp-block">
       <div class="rsvp-label">Kindly confirm your attendance</div>
       <a class="rsvp-btn" href="tel:+918867069672">✦ RSVP ✦</a>
-      <a class="rsvp-btn" href="https://www.justdial.com/Tumkur/Sri-Shivakumara-Swamiji-Dharmika-Kendra-Gokula-Extension/9999PX816
+      <a class="rsvp-btn" href="https://www.justdial.com/Tumkur/Sri-Shivakumara-Swamiji-Dharmika-Kendra-Gokula-Extension/9999PX816-X816-230116171053-Q1L5_BZDET" target="_blank">📍 Directions</a>
+    </div>
+
+    <div class="footer-text">Your presence will make our celebration complete 💍</div>
+  </div>
+</div>
+
+<script>
+const engagement = new Date('2026-09-21T11:00:00');
+
+function tick() {
+  const now = new Date();
+  let diff = Math.max(0, engagement - now);
+  const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+  const hh = Math.floor(diff / 3600000); diff -= hh * 3600000;
+  const mm = Math.floor(diff / 60000); diff -= mm * 60000;
+  const ss = Math.floor(diff / 1000);
+  
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(hh).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(mm).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(ss).padStart(2,'0');
+}
+
+// ── FIXED SCRATCH PAD IMPLEMENTATION ──
+const canvas = document.getElementById('scratchCanvas');
+const ctx2 = canvas.getContext('2d');
+const wrap = document.getElementById('scratchWrap');
+const revealed = document.getElementById('dateReveal');
+const hint = document.getElementById('scratchHint');
+const myMusic = document.getElementById('bgMusic');
+
+let scratchReady = false;
+let revealed_done = false;
+let musicStarted = false;
+let totalPixelsScratched = 0;
+
+function initScratch() {
+  const w = wrap.clientWidth || 240;
+  const h = wrap.clientHeight || 65;
+  
+  canvas.width = w;
+  canvas.height = h;
+
+  const grad = ctx2.createLinearGradient(0, 0, w, h);
+  grad.addColorStop(0, '#bc9122');
+  grad.addColorStop(0.5, '#e0be5a');
+  grad.addColorStop(1, '#a67c1e');
+  ctx2.fillStyle = grad;
+  ctx2.fillRect(0, 0, w, h);
+
+  ctx2.font = 'bold 12px Cinzel, serif';
+  ctx2.fillStyle = '#ffffff';
+  ctx2.textAlign = 'center';
+  ctx2.textBaseline = 'middle';
+  ctx2.fillText('✦ SCRATCH TO REVEAL ✦', w / 2, h / 2);
+
+  ctx2.globalCompositeOperation = 'destination-out';
+  scratchReady = true;
+}
+
+function tryPlayMusic() {
+  if (!musicStarted) {
+    myMusic.play().catch(e => console.log("Audio presentation tracking statement caught.", e));
+    musicStarted = true;
+  }
+}
+
+function doScratch(clientX, clientY) {
+  if(!scratchReady || revealed_done) return;
+  tryPlayMusic();
+
+  const r = canvas.getBoundingClientRect();
+  const x = clientX - r.left;
+  const y = clientY - r.top;
+
+  ctx2.beginPath();
+  ctx2.arc(x, y, 20, 0, Math.PI * 2);
+  ctx2.fill();
+  
+  totalPixelsScratched++;
+  if(totalPixelsScratched > 24 && !revealed_done) {
+    revealed_done = true;
+    canvas.style.transition = 'opacity 0.4s ease';
+    canvas.style.opacity = '0';
+    setTimeout(() => {
+      canvas.style.display = 'none';
+      hint.style.display = 'none';
+      revealed.classList.add('revealed-glow');
+      startFireworks();
+    }, 400);
+  }
+}
+
+let isScratching = false;
+canvas.addEventListener('mousedown', e => { isScratching = true; doScratch(e.clientX, e.clientY); });
+window.addEventListener('mouseup', () => isScratching = false);
+canvas.addEventListener('mousemove', e => { if(isScratching) doScratch(e.clientX, e.clientY); });
+
+canvas.addEventListener('touchstart', e => { 
+  isScratching = true; 
+  if (e.touches[0]) doScratch(e.touches[0].clientX, e.touches[0].clientY); 
+}, {passive: true});
+canvas.addEventListener('touchend', () => isScratching = false);
+canvas.addEventListener('touchmove', e => { 
+  if(isScratching && e.touches[0]) doScratch(e.touches[0].clientX, e.touches[0].clientY); 
+}, {passive: true});
+
+// ── AMBIENT FALLING PETALS ──
+const petalsEl = document.getElementById('petals');
+['🌸','🌹','✿','❀','💮'].forEach((ch) => {
+  for(let j = 0; j < 3; j++){
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = ch;
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (8 + Math.random() * 10) + 's';
+    p.style.animationDelay = (Math.random() * 5) + 's';
+    p.style.fontSize = (12 + Math.random() * 8) + 'px';
+    petalsEl.appendChild(p);
+  }
+});
+
+// ── CELEBRATORY SPARKS & FIREWORKS ──
+const fwCanvas = document.getElementById('fireworks-canvas');
+const fwCtx = fwCanvas.getContext('2d');
+let particles = [];
+let fwActive = false;
+
+function resizeFW() {
+  fwCanvas.width = window.innerWidth;
+  fwCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeFW);
+
+function launchFirework() {
+  const colors = ['#aa8010','#d4af37','#aa5010','#ff6b6b','#966f0a'];
+  const x = Math.random() * fwCanvas.width;
+  const y = Math.random() * fwCanvas.height * 0.4;
+  for(let i = 0; i < 40; i++){
+    const angle = (Math.PI * 2 / 40) * i;
+    const speed = 1.5 + Math.random() * 2.5;
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 1,
+      decay: 0.02 + Math.random() * 0.02,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 2 + Math.random() * 1.5
+    });
+  }
+}
+
+function animateFW() {
+  if(!fwActive) return;
+  fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
+  particles = particles.filter(p => p.life > 0);
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.04;
+    p.life -= p.decay;
+    fwCtx.globalAlpha = Math.max(0, p.life);
+    fwCtx.fillStyle = p.color;
+    fwCtx.beginPath();
+    fwCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    fwCtx.fill();
+  });
+  requestAnimationFrame(animateFW);
+}
+
+function startFireworks() {
+  resizeFW();
+  fwCanvas.style.display = 'block';
+  fwActive = true;
+  animateFW();
+  let count = 0;
+  const burst = () => {
+    launchFirework();
+    count++;
+    if(count < 5) setTimeout(burst, 400);
+    else {
+      setTimeout(() => { fwActive = false; fwCanvas.style.display = 'none'; }, 2500);
+    }
+  };
+  burst();
+}
+
+window.addEventListener('load', () => {
+  tick();
+  setInterval(tick, 1000);
+  initScratch();
+});
+</script>
+</body>
+</html>
